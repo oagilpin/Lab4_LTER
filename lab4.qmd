@@ -1,14 +1,16 @@
 ---
 title: 'Lab 4: LTER Network Data'
-format:
-   html:
-    code-fold: true
-    toc: true
 subtitle: 'Introduction to Statistics in R'
 author: 
 - name: "Olivia Gilpin: [GitHub](https://github.com/oagilpin)"
   email: "ogilpin@colostate.edu"
 date: 2025-03-13
+format:
+  html:
+    self-contained: true
+execute:
+  echo: true
+editor: visual
 ---
 
 ```{r, include = F}
@@ -329,6 +331,7 @@ Each question requires you to carry out a statistical analysis to test some hypo
 <br>
 
 #P1**1.** Conduct a chi-square test similar to the one carried out above, but test for a relationship between forest type (`section`) and channel unit (`unittype`) for *Coastal giant salamander* abundance. *Keep all unittypes* instead of filtering any like we did for the Cutthroat trout (10 pts.) --	
+
 #P1-1 Answer: The chi-square test for Coastal giant salamander abundance showed a significant relationship between forest type and channel unit (p-value < 2.2e-16).
 
 <br>
@@ -347,6 +350,7 @@ chisq.test(cont_table)
 
 
 #P1**2.** Test the hypothesis that there is a significant difference in species biomass between clear cut and old growth forest types for the *Coastal Giant salamander*. (10 pts.)
+
 #P2-2 Answer: The two-sample t-test for biomass revealed a significant difference in the species biomass between clear-cut and old-growth forest types for Coastal Giant Salamanders (p-value = 6.056e-06).
 
 <br>
@@ -368,6 +372,7 @@ salamander_clean  |>
 
 
 #P1**3.** Test the correlation between body length (snout to fork length) and body mass for *Cutthroat trout*. (Hint: run `?and_vertebrates` to find which length variable represents snout to fork length) (10 pts.)
+
 #P1-3 Answer: The Pearson correlation analysis indicated a strong positive correlation between snout-to-fork length and weight for Cutthroat trout (r = 0.912, p < 2.2e-16). This tell us that as the snout-to-fork length increases, the weight of the trout also increases in a linear relationship. This result is highly statistically significant.
 
 <br> <br>
@@ -623,6 +628,7 @@ In your assignment, you will perform a multiple linear regression using variable
 ## Exercises: Part 2
 
 1.  **After** completing the ANOVA test (and post-hoc Tukey's HSD) above to test for significant differences in crab size among 3 different sites: **1)** Create a boxplot showing the carapace width for each site where sites are *ordered by latitude* and **2)** report the findings of the statistical test as you would in a scientific paper. *Include both the code to create the boxplot and an image of the figure.* (10 pts.)
+
 #P2-1 Answer: ANOVA was conducted to analyze differences in carapace width among three sites: GTM, DB, and PIE. The results of the ANOVA revealed significant differences in carapace width between the sites (F(2, 83) = 60.02, p < 2e-16). The post-hoc Tukey’s HSD test results showed significant differences between all pairs of sites: GTM and DB (p < 0.00001), PIE and DB (p < 0.00001), and PIE and GTM (p < 0.00001). These findings suggest that carapace width varies significantly across the sites, which could be attributed to environmental or geographical factors, such as latitude.
 ```{r}
 library(ggplot2)
@@ -647,6 +653,7 @@ ggsave("carapace_width_by_site.png", width = 8, height = 6)
 
 
 2.  Conduct a simple linear regression for the effect of `water_temp_sd` (a measure reflecting annual variation in water temperature) on carapace width. Report your findings (include code *and* a sentence reporting the results) AND create a plot with a line of best fit. *Include both the code to create the plot and an image of the figure*. (10 pts).
+
 #P2-2 Answer: The regression model showed that the effect of annual water temperature variation on carapace width was not statistically significant (t(390) = 0.632, p = 0.528). The coefficient for water_temp_sd was 0.09938, indicating that a one-unit increase in water temperature variation is associated with an increase of 0.09938 units in carapace width, not significant. The model’s R-squared value was very low (R² = 0.001), which sugeests water temperature variation only explains a 0.1% of the variation in carapace width. This means the analysis provided no evidence to support a meaningful relationship between water temperature variation and carapace width in pie crabs.
 
 ```{r}
@@ -673,6 +680,7 @@ summary(lm_water_temp)
 
 
 3.  Conduct a multiple linear regression for the effects of `latitude`, `air_temp_sd`, and `water_temp_sd` on carapace width. **First** check for correlations among the three predictor variables (and report the correlation table) and **second** report your findings from the multiple linear regression (code *and* a sentence reporting the results). (10 pts.)
+
 #P2-3 Answer: The multiple linear regression analysis revealed that latitude significantly predicted carapace width (p < 2e-16), while air temperature variation (p = 0.1730) and water temperature variation (p = 0.3254) were not significant predictors.
 
 ```{r}
